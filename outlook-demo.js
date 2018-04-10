@@ -2,7 +2,7 @@ $(function() {
 
   // App configuration
   var authEndpoint = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize?';
-  var redirectUri = 'http://localhost:80/UNA_Advising';
+  var redirectUri = 'http://localhost:80/Advising';
   var appId = '7d29b103-c57a-467e-9dd3-b290093f878d';
   var scopes = 'openid profile User.Read Mail.Read Contacts.Read Calendars.ReadWrite';
 
@@ -42,6 +42,8 @@ $(function() {
       // Welcome page
       '': function() {
         renderWelcome(isAuthenticated);
+        var btn = document.getElementById("test");
+        btn.style.display = "none"
       },
 
       // Receive access token
@@ -81,7 +83,7 @@ $(function() {
         }
       },
 
-      // Display contacts
+      /*// Display contacts
       '#contacts': function() {
         if (isAuthenticated) {
           renderContacts();
@@ -89,9 +91,9 @@ $(function() {
           // Redirect to home page
           window.location.hash = '#';
         }
-      },
+      },*/
 
-      // Display inbox
+    /*  // Display inbox
       '#inbox': function() {
         if (isAuthenticated) {
           renderInbox();
@@ -99,7 +101,7 @@ $(function() {
           // Redirect to home page
           window.location.hash = '#';
         }
-      },
+      },*/
 
       // Shown if browser doesn't support session storage
       '#unsupportedbrowser': function() {
@@ -147,6 +149,10 @@ $(function() {
     setActiveNav('#calendar-nav');
     $('#event-list').empty();
     $('#calendar').show();
+    var btn = document.getElementById("test");
+    if (btn.style.display === "none"){
+      btn.style.display = "block"
+    }
 
     getUserEvents(function(events, error) {
       if (error) {
@@ -172,7 +178,7 @@ $(function() {
     });
   }
 
-
+/*
   function renderContacts() {
     setActiveNav('#contacts-nav');
     $('#contacts-status').text('Loading...');
@@ -193,7 +199,7 @@ $(function() {
         $('#contact-list').append(contactList);
       }
     });
-  }
+  }*/
 
   function renderError(error, description) {
     $('#error-name', window.parent.document).text('An error occurred: ' + decodePlusEscaped(error));
@@ -212,6 +218,7 @@ $(function() {
     }
   }
 
+/*
   function renderInbox() {
     setActiveNav('#inbox-nav');
     $('#inbox-status').text('Loading...');
@@ -232,7 +239,7 @@ $(function() {
         $('#message-list').append(msgList);
       }
     });
-  }
+  }*/
 
   // OAUTH FUNCTIONS =============================
   function buildAuthUrl() {
@@ -400,7 +407,7 @@ $(function() {
   }
 
   // OUTLOOK API FUNCTIONS =======================
-  function getUserInboxMessages(callback) {
+  /*function getUserInboxMessages(callback) {
     getAccessToken(function(accessToken) {
       if (accessToken) {
         // Create a Graph client
@@ -431,7 +438,7 @@ $(function() {
         callback(null, error);
       }
     });
-  }
+  }*/
 
   function getUserEvents(callback) {
     getAccessToken(function(accessToken) {
@@ -502,6 +509,7 @@ $(function() {
 
   //testing update user events
   function updateUserEvents1(callback, id) {
+    console.log(id);
     getAccessToken(function(accessToken) {
       if (accessToken) {
         // Create a Graph client
@@ -534,7 +542,7 @@ $(function() {
     });
   }
 
-
+/*
   function getUserContacts(callback) {
     getAccessToken(function(accessToken) {
       if (accessToken) {
@@ -567,7 +575,7 @@ $(function() {
         callback(null, error);
       }
     });
-  }
+  }*/
 
   // HELPER FUNCTIONS ============================
   function guid() {
@@ -641,5 +649,18 @@ $(function() {
         console.log("twerked");
       }
     });
+  })
+
+  //testing updating events
+  $('#test').on('click', function (e) {
+    var mID = document.querySelector('input[name = "appointment"]:checked').value;
+    //test update events
+    updateUserEvents1(function(events, error) {
+      if (error) {
+        renderError('getUserEvents failed', error);
+      } else {
+        console.log("twerked");
+      }
+    }, mID);
   })
 });

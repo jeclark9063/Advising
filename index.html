@@ -32,9 +32,9 @@
       <div id="navbar" class="navbar-collapse collapse">
         <ul class="nav navbar-nav authed-nav">
           <li id='home-nav'><a href="#">Home</a></li>
-          <li id='inbox-nav'><a href="#inbox">Inbox</a></li>
+          <!--<li id='inbox-nav'><a href="#inbox">Inbox</a></li>-->
           <li id='calendar-nav'><a href="#calendar">Calendar</a></li>
-          <li id='contacts-nav'><a href="#contacts">Contacts</a></li>
+          <!--<li id='contacts-nav'><a href="#contacts">Contacts</a></li>-->
         </ul>
         <ul class="nav navbar-nav navbar-right authed-nav">
           <li><a href="#signout">Sign out</a></li>
@@ -81,6 +81,7 @@
     </div>
 
     <!-- inbox display -->
+    <!--
     <div id="inbox" class="page panel panel-default">
       <div class="panel-heading">
         <h1 class="panel-title">Inbox</h1>
@@ -89,18 +90,17 @@
       </div>
       <div class="list-group" id="message-list">
       </div>
-    </div>
+    </div>-->
 
     <!-- calendar display -->
     <div id="calendar" class="page panel panel-default">
-      <form action="bookAdvising.php" method="get">
       <table class="table" id="event-list">
       </table>
-      <input type="Submit">
-    </form>
     </div>
+    <a class="btn btn-lg btn-primary" href="#" role="button" id="test" style="display:none">Book Appointment</a>
 
     <!-- contacts display -->
+    <!--
     <div id="contacts" class="page panel panel-default">
       <div class="panel-heading">
         <h1 class="panel-title">Contacts</h1>
@@ -109,11 +109,11 @@
       </div>
       <div class="list-group" id="contact-list">
       </div>
-    </div>
+    </div>-->
 
   </div>
   <!-- Handlebars template for message list -->
-  <script id="msg-list-template" type="text/x-handlebars-template">
+  <!--<script id="msg-list-template" type="text/x-handlebars-template">
     {{#each messages}}
     <div class="list-group-item">
       <h3 id="msg-from" class="list-group-item-">{{this.from.emailAddress.name}}</h3>
@@ -122,7 +122,7 @@
       <p id="msg-preview" class="list-group-item-text text-muted"><em>{{this.bodyPreview}}</em></p>
     </div>
     {{/each}}
-  </script>
+  </script>-->
 
   <!-- Handlebars template for event list -->
   <script id="event-list-template" type="text/x-handlebars-template">
@@ -156,14 +156,14 @@
   </script>
 
   <!-- Handlebars template for contact list -->
-  <script id="contact-list-template" type="text/x-handlebars-template">
+  <!--<script id="contact-list-template" type="text/x-handlebars-template">
     {{#each contacts}}
     <div class="list-group-item">
       <h4 id="contact-name" class="list-group-item-heading">{{this.givenName}} {{this.surname}}</h4>
       <p id="contact-email" class="list-group-item-heading">Email: {{this.emailAddresses.0.address}}</p>
     </div>
     {{/each}}
-  </script>
+  </script>-->
 
 </body>
 
