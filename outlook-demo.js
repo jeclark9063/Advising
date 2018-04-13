@@ -147,6 +147,7 @@ $(function() {
 
   function renderCalendar() {
     setActiveNav('#calendar-nav');
+    $('#mModal').modal('show');
     $('#event-list').empty();
     $('#calendar').show();
     var btn = document.getElementById("test");
@@ -164,7 +165,7 @@ $(function() {
 
         //removes events that do not have Advising as title
         for (var j = 0; j < events.length; j++){
-          if (events[j].subject != "Advising"){
+          if (events[j].subject != "Open Advising"){
             events.splice(j,1);
             j--;
           }
@@ -654,13 +655,15 @@ $(function() {
   //testing updating events
   $('#test').on('click', function (e) {
     var mID = document.querySelector('input[name = "appointment"]:checked').value;
+    setActiveNav('#calendar-nav');
     //test update events
+    /*
     updateUserEvents1(function(events, error) {
       if (error) {
         renderError('getUserEvents failed', error);
       } else {
         console.log("twerked");
       }
-    }, mID);
+    }, mID);*/
   })
 });
