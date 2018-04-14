@@ -5,6 +5,8 @@ $(function() {
   var redirectUri = 'http://localhost:80/Advising';
   var appId = '7d29b103-c57a-467e-9dd3-b290093f878d';
   var scopes = 'openid profile User.Read Mail.Read Contacts.Read Calendars.ReadWrite';
+  var mId;
+  var mName;
 
   // Check for browser support for sessionStorage
   if (typeof(Storage) === 'undefined') {
@@ -509,7 +511,7 @@ $(function() {
   }
 
   //testing update user events
-  function updateUserEvents1(callback, id) {
+  function updateUserEvents1(callback, id, name) {
     console.log(id);
     getAccessToken(function(accessToken) {
       if (accessToken) {
@@ -522,7 +524,7 @@ $(function() {
         });
 
         var test = {
-          subject: "Changed Advising",
+          subject: name + " Advising",
         }
 
         client
@@ -654,16 +656,21 @@ $(function() {
 
   //testing updating events
   $('#test').on('click', function (e) {
-    var mID = document.querySelector('input[name = "appointment"]:checked').value;
-    setActiveNav('#calendar-nav');
+    mID = document.querySelector('input[name = "appointment"]:checked').value;
     //test update events
-    /*
     updateUserEvents1(function(events, error) {
       if (error) {
         renderError('getUserEvents failed', error);
       } else {
         console.log("twerked");
       }
-    }, mID);*/
+    }, mID, mName);
+  })
+
+  $('#SaveName').on('click', function (e) {
+    console.log("got here");
+    mName = document.getElementById("fullName").value;
+    console.log(mName);
+    $('#mModal').modal('hide');
   })
 });
