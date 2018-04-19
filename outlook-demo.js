@@ -534,6 +534,7 @@ $(function() {
               console.log(err);
               return;
         }
+        $('#confirmModal').modal('show');
         console.log("twerked");
     });
       } else {
@@ -672,5 +673,10 @@ $(function() {
     mName = document.getElementById("fullName").value;
     console.log(mName);
     $('#mModal').modal('hide');
+  })
+
+  $('#closebtn').on('click', function (e) {
+    window.location.hash = '#';
+    $('#confirmModal').modal('hide');
   })
 });
